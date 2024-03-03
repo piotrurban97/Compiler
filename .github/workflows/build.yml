@@ -1,6 +1,4 @@
 name: 'Recovery Compiler For Github Actions' 
-author: 'ElytrA8' 
-description: 'Universal Recovery Compiler'
 on: push
 
 runs:
@@ -15,11 +13,6 @@ runs:
       name: 'Build Recovery'
       shell: bash
 
-branding:
-  icon: 'box'
-  color: 'black'
-
-# ...
 jobs:
   recovery_builder:
     runs-on: ubuntu-latest
