@@ -1,0 +1,44 @@
+name: 'Recovery Compiler For Github Actions' 
+author: 'ElytrA8' 
+description: 'Universal Recovery Compiler'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set Swap Space
+      uses: pierotofy/set-swap-space@master
+      with:
+        swap-size-gb: 12
+           
+    - run: ${GITHUB_ACTION_PATH}/build.sh
+      name: 'Build Recovery'
+      shell: bash
+
+branding:
+  icon: 'box'
+  color: 'black'
+
+# ...
+jobs:
+  recovery_builder:
+    runs-on: ubuntu-latest
+    # You can use either of the ubuntu-18.04 or ubuntu-20.04 runner
+    steps:
+      # Checking out the repo is not mandatory, so don't
+      #- uses: actions/checkout@v2
+      # Cleanup The Actions Workspace Using Custom Composite Run Actions
+      - name: "Cleanup Environment"
+        uses: rokibhasansagar/slimhub_actions@main
+      # That's it! Now use this action
+      - name: "Recovery Compilation"
+        uses: CarbonatedBlack/Recovery-Compiler@production
+        env:
+          MANIFEST: "https://github.com/piotrurban97/device_ulefone_Power_Armor_13/blob/A12/twrp_Power_Armor_13.mk"     # or "orangefox10" for Orangefox Android v10
+          DT_LINK: "https://github.com/piotrurban97/device_ulefone_Power_Armor_13"
+          VENDOR: "ulefone"  # Example: xiaomi, samsung, asus, etc.
+          CODENAME: "power_armor_13"   # Example: nikel, phoenix, ginkgo, etc.
+          #KERNEL_LINK: "Kernel repo link with optional -b branch."   # Only for building kernel from source. Ignore if using prebuilt.
+          TARGET: "bootimage"
+          FLAVOR: "eng"
+          #EXTRA_CMD: "If you want to Execute any external Command Before Compilation Starts"
+          TZ: "Europe/Warsaw"           # Set Time-Zone According To Your Region
