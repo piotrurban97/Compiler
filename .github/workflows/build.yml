@@ -27,7 +27,7 @@ jobs:
       - name: "Recovery Compilation"
         uses: CarbonatedBlack/Recovery-Compiler@production
         env:
-          MANIFEST: "https://github.com/piotrurban97/device_ulefone_Power_Armor_13/blob/A12/twrp_Power_Armor_13.mk"     # or "orangefox10" for Orangefox Android v10
+          MANIFEST: "https://github.com/PitchBlackRecoveryProject/manifest_pb.git -b android-12.1"     # or "orangefox10" for Orangefox Android v10
           DT_LINK: "https://github.com/piotrurban97/device_ulefone_Power_Armor_13"
           VENDOR: "ulefone"  # Example: xiaomi, samsung, asus, etc.
           CODENAME: "power_armor_13"   # Example: nikel, phoenix, ginkgo, etc.
